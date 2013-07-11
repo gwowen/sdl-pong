@@ -1,6 +1,8 @@
 //playstate.cpp 
 #include <stdio.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 #include "gamestate.h"
 #include "gameengine.h"
 #include "playstate.h"
@@ -8,8 +10,11 @@
 
 PlayState PlayState::m_PlayState;
 
+//=============================================================================
+//INIT ROUTINE
+//=============================================================================
 void PlayState::Init() {
-  SDL_Surface* temp = SDL_LoadBMP( "play.bmp" );
+  SDL_Surface* temp = IMG_Load( "play.bmp" );
 
   bg = SDL_DisplayFormat( temp );
 
@@ -18,6 +23,9 @@ void PlayState::Init() {
   printf( "PlayState Init\n" );
 }
 
+//==============================================================================
+//CLEANUP ROUTINE
+//==============================================================================
 void PlayState::Cleanup() {
   SDL_FreeSurface( bg );
   printf( "PlayState cleanup\n" );
@@ -31,6 +39,9 @@ void PlayState::Resume() {
   printf( "PlayState Resume\n" );
 }
 
+//==============================================================================
+//EVENTS HANDLER
+//==============================================================================
 void PlayState::HandleEvents( GameEngine* game ) {
 
   SDL_Event event;
@@ -57,11 +68,16 @@ void PlayState::HandleEvents( GameEngine* game ) {
   }
 }
 
-
+//==============================================================================
+//MAIN GAME LOOP
+//==============================================================================
 void PlayState::Update( GameEngine * game ) {
 
 }
 
+//==============================================================================
+//RENDERING CODE
+//==============================================================================
 void PlayState::Draw( GameEngine* game ) {
   SDL_BlitSurface( bg, NULL, game->screen, NULL );
 

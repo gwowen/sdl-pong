@@ -2,6 +2,7 @@
 <configurationDescriptor version="89">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="pong v3">
+      <in>Timer.cpp</in>
       <in>gameengine.cpp</in>
       <in>gameengine.h</in>
       <in>gamestate.h</in>
@@ -36,9 +37,9 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile</buildCommand>
-          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
+          <executablePath>stateman</executablePath>
           <ccTool>
             <incDir>
               <pElem>/usr/include/SDL</pElem>
@@ -50,6 +51,8 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Timer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gameengine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gameengine.h" ex="false" tool="3" flavor2="0">

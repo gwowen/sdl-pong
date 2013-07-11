@@ -5,7 +5,7 @@
 int main( int argc, char *argv[] ) {
   GameEngine game;
 
-  game.Init( "Engine test" );
+  game.Init( "Pong v3" );
 
   game.ChangeState( IntroState::Instance() );
 
