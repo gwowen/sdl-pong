@@ -2,7 +2,15 @@
 <configurationDescriptor version="89">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="pong v3">
+      <in>Ball.cpp</in>
+      <in>Bat.cpp</in>
+      <in>GameObject.cpp</in>
+      <in>GameObject.h</in>
+      <in>Surface.cpp</in>
+      <in>Surface.h</in>
       <in>Timer.cpp</in>
+      <in>Timer.h</in>
+      <in>constants.h</in>
       <in>gameengine.cpp</in>
       <in>gameengine.h</in>
       <in>gamestate.h</in>
@@ -51,7 +59,23 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Ball.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Surface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Surface.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Timer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Timer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="constants.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gameengine.cpp" ex="false" tool="1" flavor2="0">
       </item>
