@@ -5,7 +5,9 @@
 int main( int argc, char *argv[] ) {
   GameEngine game;
 
-  game.Init( "Pong v3" );
+  if(!game.Init( "Pong v3" )) {
+      printf( "Game failed to initialize\n");
+  }
 
   game.ChangeState( IntroState::Instance() );
 

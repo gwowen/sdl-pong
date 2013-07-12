@@ -8,13 +8,8 @@ Bat::Bat() {
     batYVel = 0;
 }
 
-bool Bat::Load( std::string file, int x, int y, int width, int height ) {
-  if( !GameObject::Load( file, x, y, width, height ) ) {
-      printf("Failed to load bat object\n");
-    return false;
-  }
-
-  return true;
+void Bat::Load( std::string file, int x, int y, int width, int height ) {
+  GameObject::Load( file, x, y, width, height );
 }
 
 void Bat::Loop( Uint32 deltaTicks ) {

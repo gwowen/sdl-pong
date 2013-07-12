@@ -8,14 +8,9 @@ Ball::Ball() {
     ballYVel = BALL_VEL;
 }
 
-bool Ball::Load( std::string file, int x, int y, int width, int height ) {
-    if( !GameObject::Load( file, x, y, width, height )) {
-        printf( "Failed to load ball object\n");
-        return false;
+void Ball::Load( std::string file, int x, int y, int width, int height ) {
+    GameObject::Load( file, x, y, width, height );
     }
-    
-    return true;
-}
 
 void Ball::Loop( Uint32 deltaTicks, SDL_Rect batBox1, SDL_Rect batBox2 ) {
 {

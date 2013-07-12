@@ -13,7 +13,7 @@ class Bat: public GameObject {
  public:
   Bat();
 
-  bool Load( std::string file, int x, int y, int width, int height );
+  void Load( std::string file, int x, int y, int width, int height );
 
   void Loop( Uint32 deltaTicks);
 

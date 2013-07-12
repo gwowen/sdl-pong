@@ -12,7 +12,7 @@ class GameState;
 
 class GameEngine {
 public:
-  void Init( const char* title, int width = 640, int height = 480,
+  bool Init( const char* title, int width = 640, int height = 480,
 	     int bpp = 0 );
   void Cleanup();
 

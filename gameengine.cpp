@@ -6,17 +6,25 @@
 #include "gameengine.h"
 #include "gamestate.h"
 
-void GameEngine::Init( const char* title, int width, int height, int bpp ) {
+bool GameEngine::Init( const char* title, int width, int height, int bpp ) {
 
-  SDL_Init( SDL_INIT_EVERYTHING );
+  if ( SDL_Init( SDL_INIT_EVERYTHING ) < 0 ) {
+      printf( "Failed to start SDL/n");
+      return false;
+  }
 
   SDL_WM_SetCaption( title, title );
 
-  screen = SDL_SetVideoMode( width, height, bpp, 0 );
+  if( ( screen = SDL_SetVideoMode( width, height, bpp, 0 ) ) == NULL ) {
+      printf( "Failed to create screen\n");
+      return false;
+  }
 
   m_running = true;
 
   printf( "GameEngine init\n" );
+  
+  return true;
 
 }
 

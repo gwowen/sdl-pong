@@ -15,19 +15,12 @@ GameObject::GameObject() {
 GameObject::~GameObject() {
 
 }
-
-bool GameObject::Load( std::string file, int x, int y, int width, int height ) {
-
-  if( ( imgObject = Surface::surfaceLoad( file ) ) == NULL ) {
-    return false;
-  }
-
+void GameObject::Load( std::string file, int x, int y, int width, int height ) {
   objectBox.x = x;
   objectBox.y = y;
   objectBox.w = width;
   objectBox.h = height;
 
-  return true;
 }
 
 void GameObject::Event() {

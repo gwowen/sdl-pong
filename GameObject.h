@@ -26,7 +26,7 @@ public:
   virtual ~GameObject();
 
  public:
-  virtual bool Load( std::string file, int x, int y, int width, int height );
+  virtual void Load( std::string file, int x, int y, int width, int height );
 
   //virtual void Loop( Uint32 deltaTicks );
 

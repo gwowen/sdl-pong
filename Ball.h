@@ -18,7 +18,7 @@ class Ball: public GameObject {
     public:
         Ball();
         
-        bool Load( std:: string file, int x, int y, int width, int height );
+        void Load( std:: string file, int x, int y, int width, int height );
         
         void Loop( Uint32 deltaTicks, SDL_Rect batBox1, SDL_Rect batBox2 );
         
