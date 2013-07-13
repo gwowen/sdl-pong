@@ -16,6 +16,8 @@ GameObject::~GameObject() {
 
 }
 void GameObject::Load( std::string file, int x, int y, int width, int height ) {
+    
+  imgObject = Surface::surfaceLoad( file );
   objectBox.x = x;
   objectBox.y = y;
   objectBox.w = width;

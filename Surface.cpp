@@ -33,8 +33,13 @@ SDL_Surface* Surface::surfaceLoad( std::string filename ) {
 
 bool Surface::surfaceDraw( int x, int y, SDL_Surface* source, SDL_Surface* destination ) {
 
-  if( source == NULL || destination == NULL ) {
-    printf( "Source is null" );
+  if( source == NULL ) {
+    printf( "Source is null\n" );
+    return false;
+  }
+  
+  if( destination == NULL ) {
+    printf( "Destination is null\n" );
     return false;
   }
 

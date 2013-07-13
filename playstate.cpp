@@ -101,7 +101,16 @@ void PlayState::Update( GameEngine * game ) {
 //RENDERING CODE
 //==============================================================================
 void PlayState::Draw( GameEngine* game ) {
-  SDL_BlitSurface( bg, NULL, game->screen, NULL );
+  //SDL_BlitSurface( bg, NULL, game->screen, NULL );
+    SDL_FillRect( game->screen, &game->screen->clip_rect, 
+            SDL_MapRGB( game->screen->format, 0xFF, 0xFF, 0xFF ));
+    
+    for( int i = 0; i < GameObject::ObjectList.size(); i++ ) {
+        if( !GameObject::ObjectList[ i ] ) continue;
+        GameObject::ObjectList[ i ]->Render( game->screen );
+    }
+    
+    SDL_Flip( game->screen );
 
-  SDL_UpdateRect( game->screen, 0, 0, 0, 0 );
+  //SDL_UpdateRect( game->screen, 0, 0, 0, 0 );
 }
