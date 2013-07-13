@@ -70,7 +70,33 @@ void PlayState::HandleEvents( GameEngine* game ) {
   SDL_Event event;
 
   if( SDL_PollEvent( &event ) ) {
-    switch( event.type ) {
+      
+      if( event.type == SDL_QUIT ) {
+          game->Quit();
+      }
+
+    if( event.type == SDL_KEYDOWN ) {
+      switch( event.key.keysym.sym ) {
+                case SDLK_w: myBat1.batYVel -= BAT_VEL; break;
+                case SDLK_s: myBat1.batYVel += BAT_VEL; break;
+                case SDLK_UP: myBat2.batYVel -= BAT_VEL; break;
+                case SDLK_DOWN: myBat2.batYVel += BAT_VEL; break;
+                case SDLK_ESCAPE: game->Quit();
+          case SDLK_SPACE: game->ChangeState( IntroState::Instance() );
+      default: break;
+      }
+    }
+    else if( event.type == SDL_KEYUP ) {
+	switch( event.key.keysym.sym ) {
+                case SDLK_w: myBat1.batYVel += BAT_VEL; break;
+                case SDLK_s: myBat1.batYVel -= BAT_VEL; break;
+                case SDLK_UP: myBat2.batYVel += BAT_VEL; break;
+                case SDLK_DOWN: myBat2.batYVel -= BAT_VEL; break;
+	default: break;
+	}
+      }
+  }
+    /*switch( event.type ) {
     case SDL_QUIT:
       game->Quit();
       break;
@@ -88,7 +114,8 @@ void PlayState::HandleEvents( GameEngine* game ) {
       }
       break;
     }
-  }
+  }*/
+  
 }
 
 //==============================================================================
