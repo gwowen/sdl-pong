@@ -12,7 +12,7 @@ LDFLAGS=`sdl-config --libs` -lSDL -lSDL_image
 
 main: main.cpp
 	$(CC) $(CPPFLAGS) -c gameengine.cpp introstate.cpp main.cpp playstate.cpp Timer.cpp Surface.cpp Bat.cpp Ball.cpp GameObject.cpp
-	$(CC) $(OBJECTS) $(CPPFLAGS) $(LDFLAGS) -o stateman
+	$(CC) $(OBJECTS) $(CPPFLAGS) $(LDFLAGS) -o pongv3
 
 #cleanup
 clean:
