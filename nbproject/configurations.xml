@@ -47,7 +47,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f makefile</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
-          <executablePath>stateman</executablePath>
+          <executablePath>pongv3</executablePath>
           <ccTool>
             <incDir>
               <pElem>/usr/include/SDL</pElem>
