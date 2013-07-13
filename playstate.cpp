@@ -25,7 +25,7 @@ PlayState PlayState::m_PlayState;
 //INIT ROUTINE
 //=============================================================================
 void PlayState::Init() {
-  SDL_Surface* temp = IMG_Load( "play.bmp" );
+  //SDL_Surface* temp = IMG_Load( "play.bmp" );
   
   myBat1.Load( "bat.png", 20, 20, 10, 101);
   
@@ -37,10 +37,11 @@ void PlayState::Init() {
   GameObject::ObjectList.push_back( &myBat2 );
   GameObject::ObjectList.push_back( &myBall );
   
+  delta.startTimer();
 
-  bg = SDL_DisplayFormat( temp );
+  //bg = SDL_DisplayFormat( temp );
 
-  SDL_FreeSurface( temp );
+  //SDL_FreeSurface( temp );
 
   printf( "PlayState Init\n" );
 }
@@ -94,7 +95,10 @@ void PlayState::HandleEvents( GameEngine* game ) {
 //MAIN GAME LOOP
 //==============================================================================
 void PlayState::Update( GameEngine * game ) {
-
+    myBat1.Loop( delta.get_ticks() );
+    myBat2.Loop( delta.get_ticks() );
+    myBall.Loop( delta.get_ticks(), myBat1.objectBox, myBat2.objectBox );
+    delta.startTimer();
 }
 
 //==============================================================================
@@ -111,6 +115,10 @@ void PlayState::Draw( GameEngine* game ) {
     }
     
     SDL_Flip( game->screen );
+    
+    if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ) {
+        SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
+    }
 
   //SDL_UpdateRect( game->screen, 0, 0, 0, 0 );
 }
