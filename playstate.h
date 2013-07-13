@@ -4,8 +4,25 @@
 
 #include <SDL/SDL.h>
 #include "gamestate.h"
+#include "Surface.h"
+#include "GameObject.h"
+#include "Bat.h"
+#include "Timer.h"
+#include "constants.h"
+#include "Ball.h"
 
 class PlayState : public GameState {
+    
+    private:
+        Bat myBat1;
+        
+        Bat myBat2;
+        
+        Ball myBall;
+        
+        Timer delta;
+        
+        Timer fps;
 
  public:
   void Init();
