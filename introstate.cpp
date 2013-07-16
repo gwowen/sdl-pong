@@ -6,6 +6,7 @@
 #include "gamestate.h"
 #include "introstate.h"
 #include "playstate.h"
+#include "playstateai.h"
 
 IntroState IntroState::m_IntroState;
 
@@ -44,9 +45,13 @@ void IntroState::HandleEvents( GameEngine* game ) {
 
     case SDL_KEYDOWN:
       switch( event.key.keysym.sym ) {
-      case SDLK_SPACE:
+      case SDLK_1:
 	game->ChangeState( PlayState::Instance() );
 	break;
+        
+     case SDLK_2:
+          game->ChangeState( PlayStateAI::Instance() );
+          break;
 
       case SDLK_ESCAPE:
 	game->Quit();

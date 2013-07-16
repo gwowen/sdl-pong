@@ -45,7 +45,6 @@ class PlayState : public GameState {
  private:
   static PlayState m_PlayState;
 
-  SDL_Surface* bg;
 
 };
 

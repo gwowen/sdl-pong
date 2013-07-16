@@ -16,7 +16,7 @@ class PlayStateAI : public GameState {
     private:
         Bat myBat1;
         
-        Bat myBat2;
+        Bat AIBat;
         
         Ball myBall;
         
@@ -35,17 +35,17 @@ class PlayStateAI : public GameState {
   void Update( GameEngine* game );
   void Draw( GameEngine* game );
 
-  static PlayState* Instance() {
-    return &m_PlayState;
+  static PlayStateAI* Instance() {
+    return &m_PlayStateAI;
   }
 
  protected:
-  PlayState() { } 
+  PlayStateAI() { } 
 
  private:
-  static PlayState m_PlayState;
+  static PlayStateAI m_PlayStateAI;
 
-  SDL_Surface* bg;
+
 
 };
 

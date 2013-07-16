@@ -50,7 +50,10 @@ void PlayState::Init() {
 //CLEANUP ROUTINE
 //==============================================================================
 void PlayState::Cleanup() {
-  SDL_FreeSurface( bg );
+    for( int i = 0; i < GameObject::ObjectList.size(); i++) {
+        if( !GameObject::ObjectList[ i ] ) continue;
+        GameObject::ObjectList[ i ]->Cleanup();
+    }
   printf( "PlayState cleanup\n" );
 }
 
@@ -132,7 +135,7 @@ void PlayState::Update( GameEngine * game ) {
 //RENDERING CODE
 //==============================================================================
 void PlayState::Draw( GameEngine* game ) {
-  //SDL_BlitSurface( bg, NULL, game->screen, NULL );
+    
     SDL_FillRect( game->screen, &game->screen->clip_rect, 
             SDL_MapRGB( game->screen->format, 0xFF, 0xFF, 0xFF ));
     

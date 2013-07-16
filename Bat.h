@@ -10,6 +10,7 @@ class Bat: public GameObject {
     public:
         int batXVel;
         int batYVel;
+        int batRealMiddle;
  public:
   Bat();
 

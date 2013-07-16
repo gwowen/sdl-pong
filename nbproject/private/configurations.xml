@@ -21,6 +21,8 @@
       <in>main.cpp</in>
       <in>playstate.cpp</in>
       <in>playstate.h</in>
+      <in>playstateai.cpp</in>
+      <in>playstateai.h</in>
     </df>
   </logicalFolder>
   <projectmakefile>makefile</projectmakefile>

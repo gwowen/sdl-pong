@@ -35,6 +35,7 @@ void GameObject::Render( SDL_Surface* renderDest ) {
 void GameObject::Cleanup() {
   SDL_FreeSurface( imgObject );
   imgObject = NULL;
+  
 }
 
 

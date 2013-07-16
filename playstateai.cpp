@@ -8,7 +8,7 @@
 //GAME STATE INCLUDES
 #include "gamestate.h"
 #include "gameengine.h"
-#include "playstate.h"
+#include "playstateai.h"
 #include "introstate.h"
 
 //GAME OBJECT/DRAWING CODE INCLUDES
@@ -19,22 +19,22 @@
 #include "constants.h"
 #include "Ball.h"
 
-PlayState PlayState::m_PlayState;
+PlayStateAI PlayStateAI::m_PlayStateAI;
 
 //=============================================================================
 //INIT ROUTINE
 //=============================================================================
-void PlayState::Init() {
+void PlayStateAI::Init() {
   //SDL_Surface* temp = IMG_Load( "play.bmp" );
   
   myBat1.Load( "bat.png", 20, 20, 10, 101);
   
-  myBat2.Load( "bat.png", 620, 20, 10, 101);
+  AIBat.Load( "bat.png", 620, 20, 10, 101);
   
   myBall.Load( "ball.png", 400, 300, 20, 20);
   
   GameObject::ObjectList.push_back( &myBat1 );
-  GameObject::ObjectList.push_back( &myBat2 );
+  GameObject::ObjectList.push_back( &AIBat );
   GameObject::ObjectList.push_back( &myBall );
   
   delta.startTimer();
@@ -49,23 +49,26 @@ void PlayState::Init() {
 //==============================================================================
 //CLEANUP ROUTINE
 //==============================================================================
-void PlayState::Cleanup() {
-  SDL_FreeSurface( bg );
+void PlayStateAI::Cleanup() {
+ for( int i = 0; i < GameObject::ObjectList.size(); i++) {
+        if( !GameObject::ObjectList[ i ] ) continue;
+        GameObject::ObjectList[ i ]->Cleanup();
+    }
   printf( "PlayState cleanup\n" );
 }
 
-void PlayState::Pause() {
+void PlayStateAI::Pause() {
   printf( "PlayState Pause\n" );
 }
 
-void PlayState::Resume() {
+void PlayStateAI::Resume() {
   printf( "PlayState Resume\n" );
 }
 
 //==============================================================================
 //EVENTS HANDLER
 //==============================================================================
-void PlayState::HandleEvents( GameEngine* game ) {
+void PlayStateAI::HandleEvents( GameEngine* game ) {
 
   SDL_Event event;
 
@@ -79,10 +82,8 @@ void PlayState::HandleEvents( GameEngine* game ) {
       switch( event.key.keysym.sym ) {
                 case SDLK_w: myBat1.batYVel -= BAT_VEL; break;
                 case SDLK_s: myBat1.batYVel += BAT_VEL; break;
-                case SDLK_UP: myBat2.batYVel -= BAT_VEL; break;
-                case SDLK_DOWN: myBat2.batYVel += BAT_VEL; break;
                 case SDLK_ESCAPE: game->Quit();
-          case SDLK_SPACE: game->ChangeState( IntroState::Instance() );
+                case SDLK_SPACE: game->ChangeState( IntroState::Instance() );
       default: break;
       }
     }
@@ -90,12 +91,39 @@ void PlayState::HandleEvents( GameEngine* game ) {
 	switch( event.key.keysym.sym ) {
                 case SDLK_w: myBat1.batYVel += BAT_VEL; break;
                 case SDLK_s: myBat1.batYVel -= BAT_VEL; break;
-                case SDLK_UP: myBat2.batYVel += BAT_VEL; break;
-                case SDLK_DOWN: myBat2.batYVel -= BAT_VEL; break;
 	default: break;
 	}
       }
   }
+  
+  AIBat.batRealMiddle = AIBat.objectBox.y + ( BAT_HEIGHT / 2);
+
+  if( myBall.ballXVel < 0 )
+    {
+      if( AIBat.batRealMiddle < 298 )
+	{
+	  AIBat.batYVel += BAT_VEL;
+	}
+
+      else if( AIBat.batRealMiddle > 302 )
+	{
+	  AIBat.batYVel -= BAT_VEL;
+	}
+    }
+     else if( myBall.ballXVel > 0 )
+    {
+      if( AIBat.batRealMiddle != myBall.objectBox.y )
+	{
+	  if( myBall.objectBox.y < AIBat.batRealMiddle )
+	    {
+	      AIBat.batYVel -= BAT_VEL;
+	    }
+	  else if( myBall.objectBox.y > AIBat.batRealMiddle )
+	    {
+	      AIBat.batYVel += BAT_VEL;
+	    }
+	}
+    }
     /*switch( event.type ) {
     case SDL_QUIT:
       game->Quit();
@@ -121,17 +149,17 @@ void PlayState::HandleEvents( GameEngine* game ) {
 //==============================================================================
 //MAIN GAME LOOP
 //==============================================================================
-void PlayState::Update( GameEngine * game ) {
+void PlayStateAI::Update( GameEngine * game ) {
     myBat1.Loop( delta.get_ticks() );
-    myBat2.Loop( delta.get_ticks() );
-    myBall.Loop( delta.get_ticks(), myBat1.objectBox, myBat2.objectBox );
+    AIBat.Loop( delta.get_ticks() );
+    myBall.Loop( delta.get_ticks(), myBat1.objectBox, AIBat.objectBox );
     delta.startTimer();
 }
 
 //==============================================================================
 //RENDERING CODE
 //==============================================================================
-void PlayState::Draw( GameEngine* game ) {
+void PlayStateAI::Draw( GameEngine* game ) {
   //SDL_BlitSurface( bg, NULL, game->screen, NULL );
     SDL_FillRect( game->screen, &game->screen->clip_rect, 
             SDL_MapRGB( game->screen->format, 0xFF, 0xFF, 0xFF ));
