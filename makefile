@@ -1,5 +1,5 @@
 #compiler
-CC=clang++
+CC=g++
 
 #objects
 OBJECTS=main.o introstate.o playstate.o gameengine.o Timer.o Surface.o Bat.o Ball.o GameObject.o playstateai.o
