@@ -1,4 +1,4 @@
-//introstate.h
+//playstate.h
 #ifndef PLAYSTATE_H
 #define PLAYSTATE_H
 

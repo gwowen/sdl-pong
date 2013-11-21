@@ -1,4 +1,4 @@
-//introstate.h
+//playstateai.h
 #ifndef PLAYSTATEAI_H
 #define PLAYSTATEAI_H
 
